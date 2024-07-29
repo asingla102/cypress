@@ -16,10 +16,10 @@ phases:
       - export COMMIT_INFO_SHA="$(git log -1 --pretty=%H)"
       - export COMMIT_INFO_REMOTE="$(git config --get remote.origin.url)"
       - dnf install -y xorg-x11-server-Xvfb gtk3-devel nss alsa-lib
+      - sudo ./node_modules/.bin/cypress install --force
     
   pre_build:
-    commands:
-      - ./node_modules/.bin/cypress install --force
+    commands:      
       - chmod +x node_modules/.bin/cypress
       - npm run cy:verify
       - npm run cy:info
